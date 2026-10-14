@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Filter</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        select, button {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+<h1>Filter Products</h1>
+
+<select id="categories"></select>
+<button id="filter">Filter</button>
+
+<div id="result"></div>
+
+<script>
+
+var products;
+
+$.get("products.json", function(data) {
+
+    products = data;
+
+    var categories = [];
+
+    for (var i = 0; i < products.length; i++) {
+
+        for (var j = 0; j < products[i].categories.length; j++) {
+
+            var category = products[i].categories[j];
+
+            if (categories.indexOf(category) == -1) {
+                categories.push(category);
+
+                $("#categories").append(
+                    "<option>" + category + "</option>"
+                );
+            }
+        }
+    }
+});
+
+
+$("#filter").click(function() {
+
+    var selected = $("#categories").val();
+    var output = "";
+
+    for (var i = 0; i < products.length; i++) {
+
+        if (products[i].categories.indexOf(selected) != -1) {
+            output += "<p>" + products[i].name + "</p>";
+        }
+
+    }
+
+    $("#result").html(output);
+
+});
+
+</script>
+
+</body>
+</html>

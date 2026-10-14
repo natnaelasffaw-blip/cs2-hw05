@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>City Search</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        input, button {
+            padding: 8px;
+        }
+
+        .city {
+            border: 1px solid black;
+            padding: 10px;
+            margin-top: 10px;
+            width: 400px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1>City Search</h1>
+
+<p>Enter a city:</p>
+
+<input type="text" id="city">
+<button onclick="searchCity()">Search</button>
+
+<div id="result"></div>
+
+<h2>About the API</h2>
+
+<p>
+I used the Open-Meteo Geocoding API. I chose this API because
+it allows you to search for cities and returns information about
+them in JSON format.
+</p>
+
+<p>
+Website:
+<a href="https://open-meteo.com/en/docs/geocoding-api">
+Open-Meteo Geocoding API
+</a>
+</p>
+
+<p>
+The parameter I used was "name". The value of this parameter is
+the city that the user enters. I also used the "count" parameter
+to choose how many results are returned.
+</p>
+
+<p>
+This API could be useful for a travel website. A user could search
+for a city and find information about its location.
+</p>
+
+
+<script>
+
+function searchCity() {
+
+    var city = document.getElementById("city").value;
+
+    var url = "https://geocoding-api.open-meteo.com/v1/search?name="
+              + city + "&count=5";
+
+    fetch(url)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+
+        var output = "";
+
+        for (var i = 0; i < data.results.length; i++) {
+
+            var place = data.results[i];
+
+            output += "<div class='city'>";
+
+            output += "<h2>" + place.name + "</h2>";
+
+            output += "<p>Country: " + place.country + "</p>";
+
+            output += "<p>State/Region: " + place.admin1 + "</p>";
+
+            output += "<p>Latitude: " + place.latitude + "</p>";
+
+            output += "<p>Longitude: " + place.longitude + "</p>";
+
+            output += "<p>Timezone: " + place.timezone + "</p>";
+
+            output += "</div>";
+        }
+
+        document.getElementById("result").innerHTML = output;
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
