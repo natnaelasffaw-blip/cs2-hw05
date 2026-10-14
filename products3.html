@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Filter</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        select, button {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            width: 400px;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Filter Products</h1>
+
+    <select id="categorySelect">
+    </select>
+
+    <button id="filterButton">Filter</button>
+
+    <div id="result"></div>
+
+    <script>
+        var products = [];
+
+        // Read JSON when the page loads
+        $.get("products.json", function(data) {
+
+            products = data;
+
+            var categories = [];
+
+            // Find all categories in the JSON
+            products.forEach(function(product) {
+
+                product.categories.forEach(function(category) {
+
+                    if (!categories.includes(category)) {
+                        categories.push(category);
+                    }
+
+                });
+
+            });
+
+            // Add the categories to the dropdown
+            categories.forEach(function(category) {
+
+                $("#categorySelect").append(
+                    "<option value='" + category + "'>" 
+                    + category + 
+                    "</option>"
+                );
+
+            });
+
+        });
+
+        // Filter when the button is clicked
+        $("#filterButton").click(function() {
+
+            var selectedCategory = $("#categorySelect").val();
+
+            var output = "";
+
+            products.forEach(function(product) {
+
+                if (product.categories.includes(selectedCategory)) {
+
+                    output += "<div class='product'>";
+                    output += product.name;
+                    output += "</div>";
+
+                }
+
+            });
+
+            document.getElementById("result").innerHTML = output;
+
+        });
+    </script>
+
+</body>
+</html>

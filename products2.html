@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            width: 400px;
+        }
+
+        .product h2 {
+            margin-top: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Product List</h1>
+
+    <button id="loadProducts">Show Products</button>
+
+    <div id="result"></div>
+
+    <script>
+        $("#loadProducts").click(function() {
+
+            $.get("products.json", function(data) {
+
+                var output = "";
+
+                data.forEach(function(product) {
+
+                    output += "<div class='product'>";
+
+                    output += "<h2>" + product.name + "</h2>";
+
+                    output += "<p>" + product.description + "</p>";
+
+                    output += "<p><strong>Price:</strong> $" 
+                              + product.price + "</p>";
+
+                    output += "<p><strong>Categories:</strong> " 
+                              + product.categories.join(", ") + "</p>";
+
+                    output += "</div>";
+                });
+
+                document.getElementById("result").innerHTML = output;
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>

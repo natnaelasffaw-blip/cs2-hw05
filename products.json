@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Vintage T-Shirt",
+        "description": "A classic vintage graphic T-shirt.",
+        "price": 35,
+        "categories": ["clothing", "vintage"]
+    },
+    {
+        "name": "Baggy Jeans",
+        "description": "Relaxed fit denim jeans.",
+        "price": 55,
+        "categories": ["clothing", "pants"]
+    },
+    {
+        "name": "Brown Bomber Jacket",
+        "description": "A brown bomber jacket for everyday wear.",
+        "price": 80,
+        "categories": ["clothing", "jackets"]
+    },
+    {
+        "name": "Classic Hoodie",
+        "description": "A comfortable everyday hoodie.",
+        "price": 45,
+        "categories": ["clothing", "hoodies"]
+    },
+    {
+        "name": "Leather Backpack",
+        "description": "A simple leather backpack for school or travel.",
+        "price": 60,
+        "categories": ["accessories", "bags"]
+    },
+    {
+        "name": "Running Shoes",
+        "description": "Lightweight shoes designed for running.",
+        "price": 75,
+        "categories": ["footwear", "sports"]
+    },
+    {
+        "name": "Timber Boots",
+        "description": "Durable boots for everyday wear.",
+        "price": 120,
+        "categories": ["footwear", "boots"]
+    },
+    {
+        "name": "Baseball Cap",
+        "description": "A casual adjustable baseball cap.",
+        "price": 25,
+        "categories": ["accessories", "hats"]
+    },
+    {
+        "name": "Silver Watch",
+        "description": "A simple silver everyday watch.",
+        "price": 90,
+        "categories": ["accessories", "jewelry"]
+    },
+    {
+        "name": "Soccer Jersey",
+        "description": "A lightweight jersey for soccer fans.",
+        "price": 50,
+        "categories": ["clothing", "sports"]
+    }
+]
